@@ -1,69 +1,142 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html ⚡>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+  <style amp-custom>
+    @font-face {
+    font-family: 'Montserrat', sans-serif;
+    src: url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+    }
 
-.flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 300px;
-  perspective: 1000px;
-}
+    body {
+    font-family: 'Montserrat', sans-serif;
+    }
 
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
+    h1, h2, h3, h4, p {
+      margin: 1rem;
+      text-align:center;
+      color: #bd9c20;
+    }
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
+    .flip-card {
+      background-color: transparent;
+      perspective: 1000px;
+    }
 
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
 
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
+    .flip-card:hover .flip-card-inner, .flip-card.active .flip-card-inner {
+      transform: rotateY(180deg);
+    }
 
-.flip-card-back {
-  background-color: #2980b9;
-  color: white;
-  transform: rotateY(180deg);
-}
+    .flip-card-front, .flip-card-back {
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flip-card-front {
+      position:relative;
+      background-color: #bbb;
+      color: black;
+      z-index: -1;
+    }
+
+    .flip-card-back {
+      top: 0;
+      position: absolute;
+      background-color: #2980b9;
+      color: white;
+      transform: rotateY(180deg);
+    }
+ 
+    .resp-img {
+    max-width: 700px;
+     }
+    
+    /* Font Awesome */
+    @font-face {
+      font-family: 'FontAwesome';
+      src: url('fonts/fontawesome-webfont.eot?v=4.0.3');
+      src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+    .fa {
+      display: inline-block;
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .fa-facebook:before {
+      content: "\f09a";
+    }
+        .fa-instagram:before {
+      content: "\f16d";
+    }
+    /* /Font Awesome */
+    
+    .doc_header_social {
+    margin: 1.5rem 0;
+    padding: 0;
+    font-size: 1.875rem;
+    text-align: center;
+    }
+    .doc_header_social li {
+      display: inline-block;
+      margin: 0 1rem;
+      padding: 0;
+    }
+    .doc_header_social li a {
+      color: #bd9c20;
+    }
+    .doc_header_social li a:hover {
+      color: #000;
+    }
+    .flex-container {
+        display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
 </style>
 </head>
+  
 <body>
-
-<h1>Card Flip with Text</h1>
-<h3>Hover over the image below:</h3>
-
-<div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-      <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
-    </div>
-    <div class="flip-card-back">
-      <h1>John Doe</h1> 
-      <p>Architect & Engineer</p> 
-      <p>We love that guy</p>
-    </div>
-  </div>
-</div>
-
+  
+  <div class="flex-container">
+  <div class="container1">
+    <h2>HOVER OVER OR TAP TO REVEAL YOUR GIFT</h2>
+    <div id="flip-card" class="flip-card" tab-index="0" onclick="document.getElementById("flip-card").classList.toggle('active');" role="button">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <amp-img src="http://xmas.studiok8ki.com/1.jpg" width="1080" height="610" layout="responsive" alt="AMP"></amp-img>
+        </div>
+        <div class="flip-card-back">
+          <amp-img src="http://xmas.studiok8ki.com/2.jpg" width="1080" height="610" layout="responsive" alt="AMP"></amp-img>
+        </div>
+      </div><!--flip-card-inner-->
+    </div><!--flip-card-->
+  </div><!--container1-->
+  <div class="container2">
+    <h3><a href="https://studiok8ki.com/contact">Schedule Now!</a></h3>
+    <ul class="doc_header_social">
+    <li><a href="https://facebook.com/studiok8ki"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="https://instagram.com/studiok8ki"><i class="fa fa-instagram"></i></a></li>
+    </ul>
+  </div> <!--container2-->
+  </div> <!--flex-container-->
 </body>
 </html>
