@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -35,14 +36,19 @@
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
       display: block;
-      width: 300px;
-      height: 200px;
       position: absolute;
-      left: 30%;
-      top: 20%;
+      left: 50%;
+      top: 50%;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       cursor: pointer;
+      max-width: 900px;
+      max-height: 530px;
+    }
+    .port_card {
+      max-width: 450px;
+      max-height: 800px;
+      min-width: 100vw;
     }
     .card_container {
       height: 650px;
@@ -151,8 +157,8 @@
   <label class="port_card">
     <input type="checkbox"  />
     <div class="card">
-      <div class="front"><img src="https://xmas.studiok8ki.com/portCardFront.jpg" layout="responsive" width="450px" alt="FRONT"></img></div>
-      <div class="back"><img src="https://xmas.studiok8ki.com/portCardBack.jpg" layout="responsive" width="450px" alt="BACK"></img></div>
+      <div class="front"><img src="https://xmas.studiok8ki.com/portCardFront.jpg" layout="responsive" alt="FRONT"></img></div>
+      <div class="back"><img src="https://xmas.studiok8ki.com/portCardBack.jpg" layout="responsive" alt="BACK"></img></div>
     </div>
   </label>
 </div>
