@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/49ca66876c.js" crossorigin="anonymous"></script>
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+    @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
     body {
-      background: #FFF;
-      font-family: Open Sans;
+      background: #000;
+      font-family: Montserrat;
       font-size: 50px;
       color: #000;
       text-align: center;
+      margin: 0;
+      overflow: hidden;
     }
 
     h1 {
@@ -31,27 +34,29 @@
     }
 
     label {
+      display: block;
+      cursor: pointer;
+    }
+    .card_container {
+      height: 100vh;
       -webkit-perspective: 1000px;
       perspective: 1000px;
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
-      display: block;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-      max-width: 900px;
-      max-height: 530px;
+    }
+    .land_card img {
+      max-width: 80vw;
     }
     .port_card {
-      max-width: 450px;
-      max-height: 800px;
-      min-width: 100vw;
+      width: 100vw;
+      height: calc(1.67*100vw);
     }
-    .card_container {
-      height: 650px;
+    .port_card img {
+      width: 100vw;
+      height: calc(1.67*100vw);
+    }
+    .port_card .card_container {
+      height: calc(1.67*100vw);
     }
     .card {
       position: relative;
@@ -64,52 +69,69 @@
       z-index: 20;
     }
 
-    .card div {
+    .card .front, .card .back {
       position: absolute;
       height: 100%;
       width: 100%;
-      background: #FFF;
+      background: #000;
       text-align: center;
       line-height: 200px;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 2px;
     }
-
+    
     .card .back {
-      background: #222;
+      background: #000;
       color: #FFF;
       -webkit-transform: rotateX(180deg);
       transform: rotateX(180deg);
+      z-index: 25;
+    }
+    .card .back img {
+      z-index: 25;
     }
 
-    label:hover .card {
+/*    label:hover .card {
       -webkit-transform: rotateX(20deg);
       transform: rotateX(20deg);
       box-shadow: 0 20px 20px rgba(50,50,50,.2);
-    }
+    }*/
 
     input {
       display: none;
     }
 
-    :checked + .card {
+    :checked + .card_container .card {
       transform: rotateX(180deg);
       -webkit-transform: rotateX(180deg);
     }
+    
+    .tools {
+      width: 100vw;
+      position: fixed;
+      bottom: -200px;
+      background: #bd9c20;
+    }
+    :checked ~ .tools {
+      display: block;
+      position: fixed;
+      bottom: 0px;
+      -moz-transition: bottom 1s ease-in-out;
+      -o-transition: bottom 1s ease-in-out;
+      -webkit-transition: bottom 1s ease-in-out;
+      transition: bottom 1s ease-in-out;
+    }
 
-    label:hover :checked + .card {
+/*    label:hover :checked + .card {
       transform: rotateX(160deg);
       -webkit-transform: rotateX(160deg);
       box-shadow: 0 20px 20px rgba(0,0,0,.2);
-    }
-
-    .footer {
-      display: flex;
-      justify-content: center;
-    }
+    }*/
 
     .doc_header_social {
+      display: flex;
+      justify-content: center;
       margin: 1.5rem 0;
       padding: 0;
       font-size: 1.2rem;
@@ -118,16 +140,16 @@
 
     .doc_header_social li {
       display: inline-block;
-      margin: 0 1rem;
-      padding: 0;
+      margin: 1rem;
+      padding: 0 0 0 0;
     }
 
     .doc_header_social li a {
-      color: #bd9c20;
+      color: #000;
     }
 
     .doc_header_social li a:hover {
-      color: #000;
+      color: #fff;
     }
 
     @media screen and (orientation: portrait)
@@ -141,42 +163,121 @@
       .land_card { display:block; }
       .port_card { display:none; }
     }
+    
+    .tip-container {
+      position: absolute;
+      top: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      animation: delayed-fadein 2.5s;
+    }
+    
+    :checked + .card_container .tip-container {
+      display: none;
+    }
+    
+    .tip {
+      background: #fff;
+      border-radius: 30px;
+      color: #bd9c20;
+      z-index: 30;
+      font-size: 24px;
+      padding: 12px;
+      opacity: 1;
+      box-shadow: 5px 10px 20px #000;
+    }
+    
+    @keyframes delayed-fadein {
+      0% {
+        top: -200px;
+      }
+      50% {
+        top: -200px;
+      }
+      100% {
+        top: 50px;
+      }
+    }
+    @media (hover: hover) {
+      label:hover .card {
+        -webkit-transform: rotateX(20deg);
+        transform: rotateX(20deg);
+        box-shadow: 0 20px 20px rgba(50,50,50,.2);
+      }
+    }
+}
+    
   </style>
 </head>
   
 <body>
   
- <div class="card_container">
-  <label class="land_card">
-    <input type="checkbox"  />
-    <div class="card">
-      <div class="front"><img src="https://xmas.studiok8ki.com/landCardFront.jpg" layout="responsive" width="900px" alt="FRONT"></img></div>
-      <div class="back"><img src="https://xmas.studiok8ki.com/landCardBack.jpg" layout="responsive" width="900px" alt="BACK"></img></div>
-    </div>
-  </label>
-  <label class="port_card">
-    <input type="checkbox"  />
-    <div class="card">
-      <div class="front"><img src="https://xmas.studiok8ki.com/portCardFront.jpg" layout="responsive" alt="FRONT"></img></div>
-      <div class="back"><img src="https://xmas.studiok8ki.com/portCardBack.jpg" layout="responsive" alt="BACK"></img></div>
-    </div>
-  </label>
-</div>
- <div class="footer">
-  <ul class="doc_header_social">
-    <li>
-      <a href="https://studiok8ki/contact.com/">SCHEDULE NOW</a>
-    </li>
-    <li>
-      <a href="https://studiok8ki.com/">STUDIOK8KI.COM</a>
-    </li>
-    <li>
-      <a href="https://facebook.com/studiok8ki">FACEBOOK</a>
-    </li>
-    <li>
-      <a href="https://instagram.com/studiok8ki">INSTAGRAM</a>
-    </li>
-  </ul>
-</div>
+  <div class="container">
+    <label class="land_card">
+      <input type="checkbox"/>
+      <div class="card_container">
+        <div class="card">
+          <div class="tip-container">
+            <div class = "tip">Tap To Reveal Your Gift</div>
+          </div>
+          <div class="front">
+            <img src="https://xmas.studiok8ki.com/landCardFront.jpg" layout="responsive" alt="FRONT">
+          </div>
+          <div class="back">
+            <img src="https://xmas.studiok8ki.com/landCardBack.jpg" layout="responsive" alt="BACK">
+          </div>
+        </div>
+      </div>
+      <div class="tools">
+        <ul class="doc_header_social">    
+          <li>
+          <a href="https://studiok8ki.com/contact/">SCHEDULE NOW</a>
+          </li>
+          <li>
+            <a href="https://studiok8ki.com/"><i class="fas fa-globe-americas"></i></a>
+          </li>
+          <li>
+            <a href="https://facebook.com/studiok8ki"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href="https://instagram.com/studiok8ki"><i class="fab fa-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+    </label>
+    <label class="port_card">
+      <input type="checkbox"/>
+      <div class="card_container">
+        <div class="card">
+          <div class="tip-container">
+            <div class = "tip">Tap To Reveal Your Gift</div>
+          </div>
+          <div class="front">
+            <img src="https://xmas.studiok8ki.com/portCardFront.jpg" layout="responsive" alt="FRONT">
+          </div>
+          <div class="back">
+            <img src="https://xmas.studiok8ki.com/portCardBack.jpg" layout="responsive" alt="BACK">
+          </div>
+        </div>
+      </div>
+      <div class="tools">
+        <ul class="doc_header_social">    
+          <li>
+          <a href="https://studiok8ki.com/contact/">SCHEDULE NOW</a>
+          </li>
+          <li>
+            <a href="https://studiok8ki.com/"><i class="fas fa-globe-americas"></i></a>
+          </li>
+          <li>
+            <a href="https://facebook.com/studiok8ki"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href="https://instagram.com/studiok8ki"><i class="fab fa-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+    </label>
+  </div>
 </body>
 </html>
